@@ -1,0 +1,10 @@
+nextflow run sRNACharP.nf  --org="R_capsulatus" --dir="./test_data_R_capsulatus" --genome="R_capsulatus_genome.fasta"  --sRNAs="R_capsulatus_sRNAs.bed" --genomeAnnotation="R_capsulatus_genomeAnnotation.bed" --promoterFile="R_capsulatus_genome_promoter_predictions.csv"
+nextflow run sRNACharP.nf  --org="R_capsulatus" --dir="./test_data_R_capsulatus" --genome="R_capsulatus_genome.fasta"  --sRNAs="R_capsulatus_RAND.bed" --genomeAnnotation="R_capsulatus_genomeAnnotation.bed" --promoterFile="R_capsulatus_genome_promoter_predictions.csv"
+
+nextflow run sRNACharP.nf  --org="S_enterica" --dir="./test_data_S_enterica" --genome="S_enterica_genome.fasta"  --sRNAs="S_enterica_sRNAs.bed" --genomeAnnotation="S_enterica_genomeAnnotation.bed" --promoterFile="S_enterica_genome_promoter_predictions.csv"
+nextflow run sRNACharP.nf  --org="S_enterica" --dir="./test_data_S_enterica" --genome="S_enterica_genome.fasta"  --sRNAs="S_enterica_RAND.bed" --genomeAnnotation="S_enterica_genomeAnnotation.bed" --promoterFile="S_enterica_genome_promoter_predictions.csv"
+
+nextflow run sRNACharP.nf  --org="S_pyogenes" --dir="./test_data_S_pyogenes" --genome="S_pyogenes_genome.fasta"  --sRNAs="S_pyogenes_sRNAs.bed" --genomeAnnotation="S_pyogenes_genomeAnnotation.bed" --promoterFile="S_pyogenes_genome_promoter_predictions.csv"
+nextflow run sRNACharP.nf  --org="S_pyogenes" --dir="./test_data_S_pyogenes" --genome="S_pyogenes_genome.fasta"  --sRNAs="S_pyogenes_RAND.bed" --genomeAnnotation="S_pyogenes_genomeAnnotation.bed" --promoterFile="S_pyogenes_genome_promoter_predictions.csv"
+
+
