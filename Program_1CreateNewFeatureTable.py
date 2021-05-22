@@ -4,8 +4,8 @@ import pandas as pd
 import os
 
 
-path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
-path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
+# path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
+# path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
 # path_Sequence = "./R_capsulatus/R_capsulatus_RAND_Sequences.txt"
 # path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_RAND.tsv"
 
@@ -16,8 +16,9 @@ path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
 
 # path_Sequence = "./S_pyogenes/S_pyogenes_sRNAs_Sequences.txt"
 # path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_sRNAs.tsv"
-# path_Sequence = "./S_pyogenes/S_pyogenes_RAND_Sequences.txt"
-# path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_RAND.tsv"
+path_Sequence = "./S_pyogenes/S_pyogenes_RAND_Sequences.txt"
+path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_RAND.tsv"
+
 
 
 # Reading previouse Feature Table
@@ -60,7 +61,11 @@ else:
 
 
 # Export extended Feature Table
-featureTable.to_csv("./R_capsulatus_nFeatureTable_sRNAs.tsv", sep="\t")
+bacteriaName = path_Featuretable.split("/")
+print(bacteriaName)
+sRNAsOrRand = "sRNAs" if "sRNAs" in path_Featuretable else "RAND"
+print(sRNAsOrRand)
+featureTable.to_csv(f"./{bacteriaName[1]}_nFeatureTable_{sRNAsOrRand}.tsv", sep="\t")
 
 
 # pd.set_option('display.max_columns', None)
