@@ -4,8 +4,8 @@ import pandas as pd
 import os
 
 
-# path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
-# path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
+path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
+path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
 # path_Sequence = "./R_capsulatus/R_capsulatus_RAND_Sequences.txt"
 # path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_RAND.tsv"
 
@@ -16,8 +16,8 @@ import os
 
 # path_Sequence = "./S_pyogenes/S_pyogenes_sRNAs_Sequences.txt"
 # path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_sRNAs.tsv"
-path_Sequence = "./S_pyogenes/S_pyogenes_RAND_Sequences.txt"
-path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_RAND.tsv"
+# path_Sequence = "./S_pyogenes/S_pyogenes_RAND_Sequences.txt"
+# path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_RAND.tsv"
 
 
 
@@ -33,9 +33,12 @@ Sequences.iloc[:,0] = Sequences.iloc[:,0].str.split("(",expand=True).iloc[:,0]
 # Number of sequrnces
 rowsCount = Sequences.shape[0]
 
+# Number of Nucleotide
+NucleotideNum = 4
+
 
 # Appending TrinucleotidesColumn(new features) and initialize with zeros
-iter = itertools.product('ACGT', repeat=3)
+iter = itertools.product('ACGT', repeat=NucleotideNum)
 for i in iter:
     colLable = "".join(i)
     colValues_zeros = [0]*rowsCount
@@ -47,7 +50,7 @@ for idIndex in range(rowsCount):
     id = Sequences.iloc[idIndex,0]
     seq = Sequences.iloc[idIndex,1]
     s = Sequence(seq)
-    freqs = s.kmer_frequencies(3, relative=True, overlap=True)
+    freqs = s.kmer_frequencies(NucleotideNum, relative=True, overlap=True)
     for trinucleotide in freqs:
         featureTable.loc[id , trinucleotide] = freqs[trinucleotide]
 
@@ -62,9 +65,7 @@ else:
 
 # Export extended Feature Table
 bacteriaName = path_Featuretable.split("/")
-print(bacteriaName)
 sRNAsOrRand = "sRNAs" if "sRNAs" in path_Featuretable else "RAND"
-print(sRNAsOrRand)
 featureTable.to_csv(f"./{bacteriaName[1]}_nFeatureTable_{sRNAsOrRand}.tsv", sep="\t")
 
 
