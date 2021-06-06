@@ -4,8 +4,8 @@ import pandas as pd
 import os
 
 
-path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
-path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
+# path_Sequence = "./R_capsulatus/R_capsulatus_sRNAs_Sequences.txt"
+# path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
 # path_Sequence = "./R_capsulatus/R_capsulatus_RAND_Sequences.txt"
 # path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_RAND.tsv"
 
@@ -18,6 +18,16 @@ path_Featuretable = "./R_capsulatus/R_capsulatus_FeatureTable_sRNAs.tsv"
 # path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_sRNAs.tsv"
 # path_Sequence = "./S_pyogenes/S_pyogenes_RAND_Sequences.txt"
 # path_Featuretable = "./S_pyogenes/S_pyogenes_FeatureTable_RAND.tsv"
+
+# path_Sequence = "./E_coli/E_coli_sRNAs_Sequences.txt"
+# path_Featuretable = "./E_coli/E_coli_FeatureTable_sRNAs.tsv"
+# path_Sequence = "./E_coli/E_coli_RAND_Sequences.txt"
+# path_Featuretable = "./E_coli/E_coli_FeatureTable_RAND.tsv"
+
+# path_Sequence = "./M_tuberculosis/M_tuberculosis_sRNAs_Sequences.txt"
+# path_Featuretable = "./M_tuberculosis/M_tuberculosis_FeatureTable_sRNAs.tsv"
+path_Sequence = "./M_tuberculosis/M_tuberculosis_RAND_Sequences.txt"
+path_Featuretable = "./M_tuberculosis/M_tuberculosis_FeatureTable_RAND.tsv"
 
 
 

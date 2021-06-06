@@ -1,0 +1,11 @@
+Jun-02 18:08:52.656 [main] DEBUG nextflow.cli.Launcher - $> nextflow run sRNACharP.nf --org=R_capsulatus --dir=/ADD_PATH/sRNACharP/test_data --genome=R_capsulatus_genome.fasta --sRNAs=R_capsulatus_sRNAs.bed --genomeAnnotation=R_capsulatus_genomeAnnotation_proteincoding.bed --promoterFile=R_capsulatus_genome_promoter_predictions.csv
+Jun-02 18:08:52.782 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.0
+Jun-02 18:08:52.847 [main] DEBUG nextflow.cli.Launcher - Operation aborted
+nextflow.exception.AbortOperationException: Not a valid project name: sRNACharP.nf
+	at nextflow.scm.AssetManager.resolveName(AssetManager.groovy:261)
+	at nextflow.scm.AssetManager.build(AssetManager.groovy:131)
+	at nextflow.scm.AssetManager.<init>(AssetManager.groovy:109)
+	at nextflow.cli.CmdRun.getScriptFile(CmdRun.groovy:360)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:265)
+	at nextflow.cli.Launcher.run(Launcher.groovy:475)
+	at nextflow.cli.Launcher.main(Launcher.groovy:657)

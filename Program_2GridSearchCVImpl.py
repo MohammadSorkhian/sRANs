@@ -36,21 +36,21 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 
-#TetraNucleotide
+# #TetraNucleotide
 
-combinedDataset = pd.read_csv("./TetraNucleotide/combinedDataset_nFeatureTable.tsv", "\t")
+# combinedDataset = pd.read_csv("./TetraNucleotide/combinedDataset_nFeatureTable.tsv", "\t")
 
-param_grid = {
-    'max_features':[23],
-    'min_samples_leaf': [1],
-    'min_samples_split': [3],
-    'n_estimators': [500]}
+# param_grid = {
+#     'max_features':[23],
+#     'min_samples_leaf': [1],
+#     'min_samples_split': [3],
+#     'n_estimators': [500]}
 
-param_grid_previous = {
-    'max_features':['sqrt'],
-    'min_samples_leaf': [5],
-    'min_samples_split': [4],
-    'n_estimators': [300]}
+# param_grid_previous = {
+#     'max_features':['sqrt'],
+#     'min_samples_leaf': [5],
+#     'min_samples_split': [4],
+#     'n_estimators': [300]}
 
 
 
@@ -69,6 +69,24 @@ param_grid_previous = {
 #     'min_samples_leaf': [5],
 #     'min_samples_split': [4],
 #     'n_estimators': [300]}
+
+
+
+#TetraNucleotide_With5Bacteria
+
+combinedDataset = pd.read_csv("./TetranucleotideWith5Bacteria/combinedDataset_nFeatureTable.tsv", "\t")
+
+param_grid = {
+    'max_features':['sqrt'],
+    'min_samples_leaf': [1],
+    'min_samples_split': [3],
+    'n_estimators': [500]}
+
+param_grid_previous = {
+    'max_features':['sqrt'],
+    'min_samples_leaf': [5],
+    'min_samples_split': [4],
+    'n_estimators': [300]}
 
 
 
@@ -95,30 +113,39 @@ grid_Previous = GridSearchCV(estimator=RandomForestClassifier(),
 
 
 
-mine = []
-previous = []
+mine_mean = []
+previous_mean = []
+mine_std = []
+previous_std = []
 
-for x in range(10):
+iteration = 10
+
+for x in range(iteration):
     grid_search = grid.fit(X_train, y_train)
     grid_search_previous = grid_Previous.fit(X_train_previous, y_train)
     print("-----Mine----")
-    # print(grid_search.best_params_)
-    print(grid.best_score_)
-    mine.append(grid.best_score_)
-
+    mine_mean.append(grid.cv_results_['mean_test_score'])
+    mine_std.append(grid.cv_results_['std_test_score'])
     print("\n-----Previous----")
-    # print(grid_search_previous.best_params_)
-    print(grid_Previous.best_score_, '\n')
-    previous.append(grid_Previous.best_score_)
+    previous_mean.append(grid_Previous.cv_results_['mean_test_score'])
+    previous_std.append(grid_Previous.cv_results_['std_test_score'])
 
-print("Mine Average = ", sum(mine)/len(mine))
-print("Previous Average = ", sum(previous)/len(previous))
+print("Mine Average = ", sum(mine_mean)/iteration)
+print("Previous Average = ", sum(previous_mean)/iteration)
 
-# tri_mine =     0.71  0.720
-# tri_previous = 0.70  0.715
+print("Mine STD = ", sum(mine_std)/iteration)
+print("Previous STD = ", sum(previous_std)/iteration)
 
-# tetra_mine =     0.73  0.72
-# tetra_previous = 0.71  0.70
 
-# tetraRC_mine =     0.725  0.72
-# tetraRC_Previous = 0.720  0.71
+                                                                            
+# # tri_mine =     0.71  0.720          0.72(0.09)      0.70(0.087)
+# # tri_previous = 0.70  0.715          0.70(0.07)      0.70(0.100)
+
+# # tetra_mine =     0.73  0.72         0.735(0.068)    0.72(0.071)
+# # tetra_previous = 0.71  0.70         0.70 (0.067)    0.71(0.072)
+
+# # tetraRC_mine =     0.725  0.72      0.73(0.083)     0.72(0.065)         0.72(0.096)  0.71(0.082)  0.73(0.079)    after not doubeling similar Tretranucleotide and its RC
+# # tetraRC_Previous = 0.720  0.71      0.71(0.080)     0.70(0.073)         0.71(0.126)  0.70(0.071)  0.71(0.105)
+
+# # tetraWith5Bacteria_mine =       0.78(0.0728)    0.78(0.055)     0.78(0.048)
+# # tetraWith5Bacteria_Previous =   0.74(0.0710)    0.74(0.056)     0.75(0.067)
