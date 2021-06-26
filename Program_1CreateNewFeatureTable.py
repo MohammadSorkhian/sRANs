@@ -26,9 +26,11 @@ import os
 
 # path_Sequence = "./M_tuberculosis/M_tuberculosis_sRNAs_Sequences.txt"
 # path_Featuretable = "./M_tuberculosis/M_tuberculosis_FeatureTable_sRNAs.tsv"
-path_Sequence = "./M_tuberculosis/M_tuberculosis_RAND_Sequences.txt"
-path_Featuretable = "./M_tuberculosis/M_tuberculosis_FeatureTable_RAND.tsv"
+# path_Sequence = "./M_tuberculosis/M_tuberculosis_RAND_Sequences.txt"
+# path_Featuretable = "./M_tuberculosis/M_tuberculosis_FeatureTable_RAND.tsv"
 
+path_Sequence = "./X_nematophila_RAND_sequences.txt"
+path_Featuretable = "./X_nematophila_RAND_FeatureTable.tsv"
 
 
 # Reading previouse Feature Table
@@ -49,11 +51,13 @@ NucleotideNum = 4
 
 # Appending TrinucleotidesColumn(new features) and initialize with zeros
 iter = itertools.product('ACGT', repeat=NucleotideNum)
+iterJoin = []
+
 for i in iter:
     colLable = "".join(i)
+    iterJoin.append(colLable)
     colValues_zeros = [0]*rowsCount
     featureTable[colLable] = colValues_zeros
-
 
 # Filling TrinucleotidesColumn with their frequency for each sequence
 for idIndex in range(rowsCount):
@@ -62,7 +66,8 @@ for idIndex in range(rowsCount):
     s = Sequence(seq)
     freqs = s.kmer_frequencies(NucleotideNum, relative=True, overlap=True)
     for trinucleotide in freqs:
-        featureTable.loc[id , trinucleotide] = freqs[trinucleotide]
+        if trinucleotide in iterJoin :
+            featureTable.loc[id , trinucleotide] = freqs[trinucleotide]
 
 
 # Adding Class(0-1)

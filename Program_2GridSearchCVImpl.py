@@ -72,14 +72,32 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 
-#TetraNucleotide_With5Bacteria
+# #TetraNucleotide_With5Bacteria
 
-combinedDataset = pd.read_csv("./TetranucleotideWith5Bacteria/combinedDataset_nFeatureTable.tsv", "\t")
+# combinedDataset = pd.read_csv("./TetranucleotideWith5Bacteria/combinedDataset_nFeatureTable.tsv", "\t")
+
+# param_grid = {
+#     'max_features':['sqrt'],
+#     'min_samples_leaf': [1],
+#     'min_samples_split': [3],
+#     'n_estimators': [500]}
+
+# param_grid_previous = {
+#     'max_features':['sqrt'],
+#     'min_samples_leaf': [5],
+#     'min_samples_split': [4],
+#     'n_estimators': [300]}
+
+
+
+#TetraNucleotide_With5Bacteria_RC
+
+combinedDataset = pd.read_csv("./TetranucleotideWith5Bacteria_RC/combinedDataset_nFeatureTable_TetraNucleotide_RC.tsv", "\t")
 
 param_grid = {
-    'max_features':['sqrt'],
+    'max_features':[25],
     'min_samples_leaf': [1],
-    'min_samples_split': [3],
+    'min_samples_split': [2],
     'n_estimators': [500]}
 
 param_grid_previous = {
@@ -118,12 +136,13 @@ previous_mean = []
 mine_std = []
 previous_std = []
 
-iteration = 10
+iteration = 2
 
 for x in range(iteration):
     grid_search = grid.fit(X_train, y_train)
     grid_search_previous = grid_Previous.fit(X_train_previous, y_train)
     print("-----Mine----")
+    # print(grid_search.best_params_)
     mine_mean.append(grid.cv_results_['mean_test_score'])
     mine_std.append(grid.cv_results_['std_test_score'])
     print("\n-----Previous----")
@@ -149,3 +168,6 @@ print("Previous STD = ", sum(previous_std)/iteration)
 
 # # tetraWith5Bacteria_mine =       0.78(0.0728)    0.78(0.055)     0.78(0.048)
 # # tetraWith5Bacteria_Previous =   0.74(0.0710)    0.74(0.056)     0.75(0.067)
+
+# # tetraWith5Bacteria_RC_mine =       0.(0.0)    0.(0.0)     0.(0.0)
+# # tetraWith5Bacteria_Previous =      0.(0.0)    0.(0.0)     0.(0.0)

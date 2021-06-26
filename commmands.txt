@@ -1,0 +1,1 @@
+bedtools getfasta -name -fi Ecoli_genome.fasta -bed E_coli_RANDOM.bed -tab -fo out.txt -s
